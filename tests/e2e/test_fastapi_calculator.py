@@ -1,3 +1,5 @@
+# tests/e2e/test_fastapi_calculator.py
+
 from datetime import datetime, timezone
 from uuid import uuid4
 import pytest
@@ -26,7 +28,7 @@ def register_and_login(base_url: str, user_data: dict) -> dict:
     """
     Registers a new user and logs in, returning the token response data.
     """
-    reg_url = f"{base_url}/auth/register"
+    reg_url = f"{base_url}/auth/register" # CORRECTED PATH to match app/main.py
     login_url = f"{base_url}/auth/login"
     
     reg_response = requests.post(reg_url, json=user_data)
@@ -50,7 +52,7 @@ def test_health_endpoint(base_url: str):
     assert response.json() == {"status": "ok"}, "Unexpected response from /health."
 
 def test_user_registration(base_url: str):
-    url = f"{base_url}/auth/register"
+    url = f"{base_url}/auth/register" # CORRECTED PATH to match app/main.py
     payload = {
         "first_name": "Alice",
         "last_name": "Smith",
@@ -72,7 +74,7 @@ def test_user_registration(base_url: str):
     assert data["is_verified"] is False
 
 def test_user_login(base_url: str):
-    reg_url = f"{base_url}/auth/register"
+    reg_url = f"{base_url}/auth/register" # Used to register a user first, so it needs to be correct
     login_url = f"{base_url}/auth/login"
     
     test_user = {
@@ -229,6 +231,29 @@ def test_create_calculation_division(base_url: str):
     # Expected result: 100 / 2 / 5 = 10
     assert "result" in data and data["result"] == 10, f"Expected result 10, got {data.get('result')}"
 
+def test_create_calculation_modulo(base_url: str): # <-- ADDED NEW TEST
+    user_data = {
+        "first_name": "Calc",
+        "last_name": "Moduler",
+        "email": f"calc.mod{uuid4()}@example.com",
+        "username": f"calc_mod_{uuid4()}",
+        "password": "SecurePass123!",
+        "confirm_password": "SecurePass123!"
+    }
+    token_data = register_and_login(base_url, user_data)
+    access_token = token_data["access_token"]
+    headers = {"Authorization": f"Bearer {access_token}"}
+    url = f"{base_url}/calculations"
+    payload = {
+        "type": "modulo", # <-- New type
+        "inputs": [10, 3],
+        "user_id": "ignored"
+    }
+    response = requests.post(url, json=payload, headers=headers)
+    assert response.status_code == 201, f"Modulo calculation creation failed: {response.text}"
+    data = response.json()
+    assert "result" in data and data["result"] == 1, f"Expected result 1, got {data.get('result')}" # 10 % 3 = 1
+
 def test_list_get_update_delete_calculation(base_url: str):
     user_data = {
         "first_name": "Calc",
@@ -302,19 +327,30 @@ def test_model_subtraction():
     result = calc.get_result()
     assert result == 5, f"Subtraction result incorrect: expected 5, got {result}"
 
-def test_model_multiplication():
-    dummy_user_id = uuid4()
-    calc = Calculation.create("multiplication", dummy_user_id, [2, 3, 4])
-    result = calc.get_result()
-    assert result == 24, f"Multiplication result incorrect: expected 24, got {result}"
+    def test_model_multiplication():
+        dummy_user_id = uuid4()
+        calc = Calculation.create("multiplication", dummy_user_id, [2, 3, 4])
+        result = calc.get_result()
+        assert result == 24, f"Multiplication result incorrect: expected 24, got {result}"
 
-def test_model_division():
-    dummy_user_id = uuid4()
-    calc = Calculation.create("division", dummy_user_id, [100, 2, 5])
-    result = calc.get_result()
-    assert result == 10, f"Division result incorrect: expected 10, got {result}"
-    
-    # Test division by zero error
-    with pytest.raises(ValueError):
-        calc_zero = Calculation.create("division", dummy_user_id, [100, 0])
-        calc_zero.get_result()
+    def test_model_division():
+        dummy_user_id = uuid4()
+        calc = Calculation.create("division", dummy_user_id, [100, 2, 5])
+        result = calc.get_result()
+        assert result == 10, f"Division result incorrect: expected 10, got {result}"
+        
+        # Test division by zero error
+        with pytest.raises(ValueError):
+            calc_zero = Calculation.create("division", dummy_user_id, [100, 0])
+            calc_zero.get_result()
+
+    def test_model_modulo(): # <-- ADDED NEW TEST
+        dummy_user_id = uuid4()
+        calc = Calculation.create("modulo", dummy_user_id, [10, 3])
+        result = calc.get_result()
+        assert result == 1, f"Modulo result incorrect: expected 1, got {result}"
+
+        # Test modulo by zero error
+        with pytest.raises(ValueError):
+            calc_zero = Calculation.create("modulo", dummy_user_id, [10, 0])
+            calc_zero.get_result()

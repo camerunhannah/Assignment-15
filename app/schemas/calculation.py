@@ -1,3 +1,4 @@
+# app/schemas/calculation.py
 """
 Calculation Schemas Module
 
@@ -14,7 +15,7 @@ clear error messages when validation fails.
 
 from enum import Enum
 from pydantic import BaseModel, Field, ConfigDict, model_validator, field_validator
-from typing import List, Optional
+from typing import List, Optional, Literal # Import Literal
 from uuid import UUID
 from datetime import datetime
 
@@ -36,6 +37,7 @@ class CalculationType(str, Enum):
     SUBTRACTION = "subtraction"
     MULTIPLICATION = "multiplication"
     DIVISION = "division"
+    MODULO = "modulo" # <-- ADD THIS LINE
 
 class CalculationBase(BaseModel):
     """
@@ -47,9 +49,9 @@ class CalculationBase(BaseModel):
     
     It also implements validation rules to ensure data integrity.
     """
-    type: CalculationType = Field(
+    type: Literal["addition", "subtraction", "multiplication", "division", "modulo"] = Field( # <-- ADD "modulo" here
         ...,  # The ... means this field is required
-        description="Type of calculation (addition, subtraction, multiplication, division)",
+        description="Type of calculation (addition, subtraction, multiplication, division, modulo)", # <-- Update description
         example="addition"
     )
     inputs: List[float] = Field(
@@ -117,6 +119,7 @@ class CalculationBase(BaseModel):
         business logic validation:
         1. Ensures there are at least 2 numbers for any calculation
         2. For division, ensures that no divisor is zero
+        3. For modulo, ensures exactly two inputs and no modulo by zero. # <-- Update for Modulo
         
         Returns:
             CalculationBase: The validated model
@@ -126,10 +129,18 @@ class CalculationBase(BaseModel):
         """
         if len(self.inputs) < 2:
             raise ValueError("At least two numbers are required for calculation")
+        
         if self.type == CalculationType.DIVISION:
             # Prevent division by zero (skip the first value as numerator)
             if any(x == 0 for x in self.inputs[1:]):
                 raise ValueError("Cannot divide by zero")
+        
+        if self.type == CalculationType.MODULO: # <-- ADD THIS BLOCK
+            if len(self.inputs) != 2:
+                raise ValueError("Modulo operation requires exactly two numbers.")
+            if self.inputs[1] == 0:
+                raise ValueError("Cannot perform modulo by zero.")
+        
         return self
 
     model_config = ConfigDict(
@@ -140,7 +151,8 @@ class CalculationBase(BaseModel):
         json_schema_extra={
             "examples": [
                 {"type": "addition", "inputs": [10.5, 3, 2]},
-                {"type": "division", "inputs": [100, 2]}
+                {"type": "division", "inputs": [100, 2]},
+                {"type": "modulo", "inputs": [10, 3]} # <-- ADD THIS EXAMPLE
             ]
         }
     )
@@ -271,3 +283,4 @@ class CalculationResponse(CalculationBase):
             }
         }
     )
+

@@ -2,15 +2,15 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8">
-  <title>{% block title %}Calculations App{% endblock %}</title>
+  <title>{% block title %}Good Money Calculations{% endblock %}</title> <!-- CHANGED APP NAME -->
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <meta name="description" content="A powerful app for performing and storing calculations">
-  <meta name="theme-color" content="#1d4ed8">
+  <meta name="theme-color" content="#166534"> <!-- CHANGED THEME COLOR to a dark green hex -->
   
   <!-- Favicon -->
   <link rel="icon" href="{{ url_for('static', path='img/favicon.ico') }}" type="image/x-icon">
   <link rel="stylesheet" href="https://rsms.me/inter/inter.css" />
-  <script src="https://unpkg.com/@tailwindcss/browser@4"></script>
+  <script src="https://cdn.tailwindcss.com"></script>
 
   <!-- Custom CSS -->
   <link rel="stylesheet" href="{{ url_for('static', path='css/style.css') }}">
@@ -44,7 +44,7 @@
 
 <body class="bg-gray-100 text-gray-800 flex flex-col min-h-screen">
   <!-- Header -->
-  <header class="bg-blue-700 shadow-md">
+  <header class="bg-green-700 shadow-md"> <!-- CHANGED HEADER BACKGROUND TO DARK GREEN -->
     <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
       <div class="flex justify-between items-center h-16">
         <!-- Brand / Logo -->
@@ -54,17 +54,17 @@
             <svg class="w-8 h-8 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true">
               <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 7h6m0 10v-3m-3 3h.01M9 17h.01M9 14h.01M12 14h.01M15 11h.01M12 11h.01M9 11h.01M7 21h10a2 2 0 002-2V5a2 2 0 00-2-2H7a2 2 0 00-2 2v14a2 2 0 002 2z"></path>
             </svg>
-            <span class="text-xl font-bold text-white">Calculations App</span>
+            <span class="text-xl font-bold text-white">Good Money Calculations</span> <!-- CHANGED APP NAME -->
           </a>
         </div>
-  
+        
         <!-- Right side: user greeting & logout -->
         <div class="flex items-center space-x-4">
           <span id="layoutUserWelcome" class="text-sm font-medium text-white hidden md:block"></span>
           <button
             id="layoutLogoutBtn"
-            class="px-4 py-2 rounded-md text-white bg-red-600 hover:bg-red-700 transition-colors duration-200 
-                  font-medium focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-red-500 flex items-center"
+            class="px-4 py-2 rounded-md text-white bg-green-800 hover:bg-green-900 transition-colors duration-200 
+                   font-medium focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-green-500 flex items-center" <!-- CHANGED LOGOUT BUTTON COLOR -->
           >
             <svg class="w-4 h-4 mr-1" fill="none" stroke="currentColor" viewBox="0 0 24 24">
               <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 16l4-4m0 0l-4-4m4 4H7m6 4v1a3 3 0 01-3 3H6a3 3 0 01-3-3V7a3 3 0 013-3h4a3 3 0 013 3v1"></path>
@@ -86,7 +86,7 @@
     <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
       <div class="flex flex-col md:flex-row justify-between items-center">
         <div class="mb-4 md:mb-0">
-          <p class="text-sm">&copy; 2025 Calculations App. All rights reserved.</p>
+          <p class="text-sm">&copy; 2025 Good Money Calculations. All rights reserved.</p> <!-- CHANGED APP NAME IN FOOTER -->
         </div>
         <div class="flex space-x-6">
           <a href="#" class="text-gray-300 hover:text-white transition-colors duration-200">
@@ -187,7 +187,7 @@
           icon = '<svg class="w-5 h-5 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 9v2m0 4h.01m-6.938 4h13.856c1.54 0 2.502-1.667 1.732-3L13.732 4c-.77-1.333-2.694-1.333-3.464 0L3.34 16c-.77 1.333.192 3 1.732 3z"></path></svg>';
           break;
         default:
-          bgColor = 'bg-blue-500';
+          bgColor = 'bg-green-500'; // Default to green for general info
           icon = '<svg class="w-5 h-5 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"></path></svg>';
       }
 

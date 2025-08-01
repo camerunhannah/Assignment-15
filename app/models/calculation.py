@@ -17,11 +17,11 @@ basic mathematical operations: addition, subtraction, multiplication, and divisi
 from datetime import datetime
 import uuid
 from typing import List
-from sqlalchemy import Column, String, DateTime, ForeignKey, JSON, Float
+from sqlalchemy import Column, String, DateTime, JSON, Float, ForeignKey
 from sqlalchemy.dialects.postgresql import UUID
 from sqlalchemy.orm import relationship, declared_attr
-from sqlalchemy.ext.declarative import declared_attr
 from app.database import Base
+from app.operations import modulo as perform_modulo # Import the modulo function
 
 class AbstractCalculation:
     """
@@ -178,6 +178,7 @@ class AbstractCalculation:
             'subtraction': Subtraction,
             'multiplication': Multiplication,
             'division': Division,
+            'modulo': Modulo, # <-- ADD THIS LINE
         }
         calculation_class = calculation_classes.get(calculation_type.lower())
         if not calculation_class:
@@ -342,7 +343,7 @@ class Division(Calculation):
             
         Raises:
             ValueError: If inputs are not a list, if fewer than 2 numbers provided,
-                        or if attempting to divide by zero
+            or if attempting to divide by zero
         """
         if not isinstance(self.inputs, list):
             raise ValueError("Inputs must be a list of numbers.")
@@ -354,3 +355,40 @@ class Division(Calculation):
                 raise ValueError("Cannot divide by zero.")
             result /= value
         return result
+
+class Modulo(Calculation): # <-- ADD THIS NEW CLASS
+    """
+    Modulo calculation subclass.
+    
+    Implements the modulo operation (remainder of division).
+    Requires exactly two numbers.
+    Examples:
+        [10, 3] -> 10 % 3 = 1
+        [15, 4] -> 15 % 4 = 3
+        
+    Special case handling:
+        - Modulo by zero raises a ValueError
+    """
+    __mapper_args__ = {"polymorphic_identity": "modulo"}
+
+    def get_result(self) -> float:
+        """
+        Calculate the remainder of the division of the first number by the second.
+        
+        Requires exactly two input numbers.
+        
+        Returns:
+            float: The result of the modulo operation.
+            
+        Raises:
+            ValueError: If inputs are not a list, if not exactly two numbers provided,
+                        or if attempting modulo by zero.
+        """
+        if not isinstance(self.inputs, list):
+            raise ValueError("Inputs must be a list of numbers.")
+        if len(self.inputs) != 2: # Modulo typically operates on two numbers
+            raise ValueError("Modulo operation requires exactly two numbers.")
+        if self.inputs[1] == 0:
+            raise ValueError("Cannot perform modulo by zero.")
+        return perform_modulo(self.inputs[0], self.inputs[1]) # Use the imported modulo function
+

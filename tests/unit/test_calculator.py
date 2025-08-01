@@ -2,7 +2,8 @@
 
 import pytest  # Import the pytest framework for writing and running tests
 from typing import Union  # Import Union for type hinting multiple possible types
-from app.operations import add, subtract, multiply, divide  # Import the calculator functions from the operations module
+# Import the calculator functions from the operations module, including modulo
+from app.operations import add, subtract, multiply, divide, modulo 
 
 # Define a type alias for numbers that can be either int or float
 Number = Union[int, float]
@@ -15,11 +16,11 @@ Number = Union[int, float]
 @pytest.mark.parametrize(
     "a, b, expected",
     [
-        (2, 3, 5),           # Test adding two positive integers
-        (-2, -3, -5),        # Test adding two negative integers
-        (2.5, 3.5, 6.0),     # Test adding two positive floats
-        (-2.5, 3.5, 1.0),    # Test adding a negative float and a positive float
-        (0, 0, 0),            # Test adding zeros
+        (2, 3, 5),          # Test adding two positive integers
+        (-2, -3, -5),       # Test adding two negative integers
+        (2.5, 3.5, 6.0),    # Test adding two positive floats
+        (-2.5, 3.5, 1.0),   # Test adding a negative float and a positive float
+        (0, 0, 0),          # Test adding zeros
     ],
     ids=[
         "add_two_positive_integers",
@@ -64,11 +65,11 @@ def test_add(a: Number, b: Number, expected: Number) -> None:
 @pytest.mark.parametrize(
     "a, b, expected",
     [
-        (5, 3, 2),           # Test subtracting a smaller positive integer from a larger one
-        (-5, -3, -2),        # Test subtracting a negative integer from another negative integer
-        (5.5, 2.5, 3.0),     # Test subtracting two positive floats
-        (-5.5, -2.5, -3.0),  # Test subtracting two negative floats
-        (0, 0, 0),            # Test subtracting zeros
+        (5, 3, 2),          # Test subtracting a smaller positive integer from a larger one
+        (-5, -3, -2),       # Test subtracting a negative integer from another negative integer
+        (5.5, 2.5, 3.0),    # Test subtracting two positive floats
+        (-5.5, -2.5, -3.0), # Test subtracting two negative floats
+        (0, 0, 0),          # Test subtracting zeros
     ],
     ids=[
         "subtract_two_positive_integers",
@@ -113,11 +114,11 @@ def test_subtract(a: Number, b: Number, expected: Number) -> None:
 @pytest.mark.parametrize(
     "a, b, expected",
     [
-        (2, 3, 6),           # Test multiplying two positive integers
-        (-2, 3, -6),         # Test multiplying a negative integer with a positive integer
-        (2.5, 4.0, 10.0),    # Test multiplying two positive floats
-        (-2.5, 4.0, -10.0),  # Test multiplying a negative float with a positive float
-        (0, 5, 0),            # Test multiplying zero with a positive integer
+        (2, 3, 6),          # Test multiplying two positive integers
+        (-2, 3, -6),        # Test multiplying a negative integer with a positive integer
+        (2.5, 4.0, 10.0),   # Test multiplying two positive floats
+        (-2.5, 4.0, -10.0), # Test multiplying a negative float with a positive float
+        (0, 5, 0),          # Test multiplying zero with a positive integer
     ],
     ids=[
         "multiply_two_positive_integers",
@@ -162,11 +163,11 @@ def test_multiply(a: Number, b: Number, expected: Number) -> None:
 @pytest.mark.parametrize(
     "a, b, expected",
     [
-        (6, 3, 2.0),           # Test dividing two positive integers
-        (-6, 3, -2.0),         # Test dividing a negative integer by a positive integer
-        (6.0, 3.0, 2.0),       # Test dividing two positive floats
-        (-6.0, 3.0, -2.0),     # Test dividing a negative float by a positive float
-        (0, 5, 0.0),            # Test dividing zero by a positive integer
+        (6, 3, 2.0),          # Test dividing two positive integers
+        (-6, 3, -2.0),        # Test dividing a negative integer by a positive integer
+        (6.0, 3.0, 2.0),      # Test dividing two positive floats
+        (-6.0, 3.0, -2.0),    # Test dividing a negative float by a positive float
+        (0, 5, 0.0),          # Test dividing zero by a positive integer
     ],
     ids=[
         "divide_two_positive_integers",
@@ -232,3 +233,45 @@ def test_divide_by_zero() -> None:
     # Assert that the exception message contains the expected error message
     assert "Cannot divide by zero!" in str(excinfo.value), \
         f"Expected error message 'Cannot divide by zero!', but got '{excinfo.value}'"
+
+
+# ---------------------------------------------
+# Unit Tests for the 'modulo' Function (NEW)
+# ---------------------------------------------
+
+@pytest.mark.parametrize(
+    "a, b, expected",
+    [
+        (10, 3, 1),           # Basic positive modulo
+        (15, 4, 3),           # Another positive modulo
+        (-10, 3, 2),          # Negative dividend, positive divisor
+        (10, -3, -2),         # Positive dividend, negative divisor
+        (-10, -3, -1),        # Negative dividend, negative divisor
+        (7.5, 2.5, 0.0),      # Float modulo (exact division)
+        (7, 2, 1),            # Even/odd check
+    ],
+    ids=[
+        "modulo_positive_integers_1",
+        "modulo_positive_integers_2",
+        "modulo_negative_dividend",
+        "modulo_negative_divisor",
+        "modulo_negative_both",
+        "modulo_floats_exact",
+        "modulo_odd_even",
+    ]
+)
+def test_modulo(a: Number, b: Number, expected: Number) -> None:
+    """
+    Test the 'modulo' function with various combinations of integers and floats.
+    """
+    result = modulo(a, b)
+    assert result == expected, f"Expected modulo({a}, {b}) to be {expected}, but got {result}"
+
+def test_modulo_by_zero_raises_error() -> None:
+    """
+    Test that 'modulo' function raises ValueError when dividing by zero.
+    """
+    with pytest.raises(ValueError) as excinfo:
+        modulo(10, 0)
+    assert "Cannot perform modulo by zero!" in str(excinfo.value)
+
