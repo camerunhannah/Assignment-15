@@ -107,8 +107,8 @@ jobs:
         with:
           push: true
           tags: |
-            camhannah/module15_is601:latest            # Corrected Docker Hub username and repo name
-            camhannah/module15_is601:${{ github.sha }} # Corrected Docker Hub username and repo name
+            camhannah/module15_is601:latest            
+            camhannah/module15_is601:${{ github.sha }} 
           platforms: linux/amd64,linux/arm64
           cache-from: type=registry,ref=camhannah/module15_is601:cache # Corrected Docker Hub username and repo name
           cache-to: type=inline,mode=max
