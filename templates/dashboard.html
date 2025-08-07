@@ -2,276 +2,275 @@
 {% block title %}Dashboard{% endblock %}
 
 {% block content %}
-<div class="container mx-auto px-4 lg:px-6"> {# New wrapper div for margin control #}
-  <!-- Error/Success Alerts -->
-  <div 
-    id="errorAlert" 
-    class="hidden bg-red-100 border border-red-500 text-red-800 
-           px-4 py-3 rounded-md mb-4 transition-all duration-300"
-  >
-    <div class="flex items-center">
-      <svg class="w-5 h-5 mr-2" fill="currentColor" viewBox="0 0 20 20">
-        <path fill-rule="evenodd" d="M18 10a8 8 0 11-16 0 8 8 0 0116 0zm-7 4a1 1 0 11-2 0 1 1 0 012 0zm-1-9a1 1 0 00-1 1v4a1 1 0 102 0V6a1 1 0 00-1-1z" clip-rule="evenodd"></path>
-      </svg>
-      <span id="errorMessage" class="block sm:inline"></span>
-    </div>
+<!-- Error/Success Alerts -->
+<div 
+  id="errorAlert" 
+  class="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 hidden bg-red-100 border border-red-500 text-red-800 
+         py-3 rounded-md mb-4 transition-all duration-300"
+>
+  <div class="flex items-center">
+    <svg class="w-5 h-5 mr-2" fill="currentColor" viewBox="0 0 20 20">
+      <path fill-rule="evenodd" d="M18 10a8 8 0 11-16 0 8 8 0 0116 0zm-7 4a1 1 0 11-2 0 1 1 0 012 0zm-1-9a1 1 0 00-1 1v4a1 1 0 102 0V6a1 1 0 00-1-1z" clip-rule="evenodd"></path>
+    </svg>
+    <span id="errorMessage" class="block sm:inline"></span>
   </div>
-  <div 
-    id="successAlert" 
-    class="hidden bg-green-100 border border-green-500 text-green-800 
-           px-4 py-3 rounded-md mb-4 transition-all duration-300"
-  >
-    <div class="flex items-center">
-      <svg class="w-5 h-5 mr-2" fill="currentColor" viewBox="0 0 20 20">
-        <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd"></path>
-      </svg>
-      <span id="successMessage" class="block sm:inline"></span>
-    </div>
+</div>
+<div 
+  id="successAlert" 
+  class="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 hidden bg-green-100 border border-green-500 text-green-800 
+         py-3 rounded-md mb-4 transition-all duration-300"
+>
+  <div class="flex items-center">
+    <svg class="w-5 h-5 mr-2" fill="currentColor" viewBox="0 0 20 20">
+      <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd"></path>
+    </svg>
+    <span id="successMessage" class="block sm:inline"></span>
   </div>
+</div>
 
-  <!-- New Calculation Card -->
-  <div 
-    class="bg-white shadow-lg rounded-lg mb-6 p-6 
-           transition-all duration-300 hover:shadow-xl border border-gray-100"
-  >
-    <h2 class="text-xl font-bold mb-4 text-gray-800 flex items-center">
-      <svg class="w-5 h-5 mr-2 text-green-700" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 6v6m0 0v6m0-6h6m-6 0H6"></path>
-      </svg>
-      New Calculation
-    </h2>
-    <form id="calculationForm" class="space-y-5">
-      <div class="grid grid-cols-1 md:grid-cols-2 gap-5">
-        <!-- Type -->
-        <div>
-          <label for="calcType" class="block text-sm font-medium text-gray-700 mb-1">Operation Type</label>
-          <select 
-            id="calcType" 
-            name="type" 
-            class="block w-full rounded-md border-gray-300 shadow-sm 
-                   focus:border-green-500 focus:ring-green-500 py-2"
-          >
-            <option value="addition">Addition</option>
-            <option value="subtraction">Subtraction</option>
-            <option value="multiplication">Multiplication</option>
-            <option value="division">Division</option>
-            <option value="modulo">Modulo</option>
-          </select>
-        </div>
-        <!-- Inputs -->
-        <div>
-          <label for="calcInputs" class="block text-sm font-medium text-gray-700 mb-1">
-            Numbers (comma-separated)
-          </label>
-          <input 
-            type="text" 
-            id="calcInputs" 
-            name="inputs" 
-            placeholder="e.g. 5, 10, 15"
-            class="block w-full rounded-md border-gray-300 shadow-sm 
-                   focus:border-green-500 focus:ring-green-500 py-2"
-          />
-        </div>
+<!-- New Calculation Card -->
+<div 
+  class="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 bg-white shadow-lg rounded-lg mb-6 p-6 
+         transition-all duration-300 hover:shadow-xl border border-gray-100"
+>
+  <h2 class="text-xl font-bold mb-4 text-gray-800 flex items-center">
+    <svg class="w-5 h-5 mr-2 text-green-700" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+      <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 6v6m0 0v6m0-6h6m-6 0H6"></path>
+    </svg>
+    New Calculation
+  </h2>
+  <form id="calculationForm" class="space-y-5">
+    <div class="grid grid-cols-1 md:grid-cols-2 gap-5">
+      <!-- Type -->
+      <div>
+        <label for="calcType" class="block text-sm font-medium text-gray-700 mb-1">Operation Type</label>
+        <select 
+          id="calcType" 
+          name="type" 
+          class="block w-full rounded-md border-gray-300 shadow-sm 
+                 focus:border-green-500 focus:ring-green-500 py-2"
+        >
+          <option value="addition">Addition</option>
+          <option value="subtraction">Subtraction</option>
+          <option value="multiplication">Multiplication</option>
+          <option value="division">Division</option>
+          <option value="modulo">Modulo</option>
+        </select>
       </div>
-      <div class="pt-2">
+      <!-- Inputs -->
+      <div>
+        <label for="calcInputs" class="block text-sm font-medium text-gray-700 mb-1">
+          Numbers (comma-separated)
+        </label>
+        <input 
+          type="text" 
+          id="calcInputs" 
+          name="inputs" 
+          placeholder="e.g. 5, 10, 15"
+          class="block w-full rounded-md border-gray-300 shadow-sm 
+                 focus:border-green-500 focus:ring-green-500 py-2"
+        />
+      </div>
+    </div>
+    <div class="pt-2">
+      <button 
+        type="submit" 
+        class="bg-green-700 text-white px-6 py-2 
+               rounded-md hover:bg-green-800 transition-colors duration-200
+               focus:outline-none focus:ring-2 focus:ring-offset-2 
+               focus:ring-green-500 font-medium flex items-center"
+      >
+        <svg class="w-4 h-4 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 7h6m0 10v-3m-3 3h.01M9 17h.01M9 14h.01M12 14h.01M15 11h.01M12 11h.01M9 11h.01M7 21h10a2 2 0 002-2V5a2 2 0 00-2-2H7a2 2 0 00-2 2v14a2 2 0 002 2z"></path>
+        </svg>
+        Calculate
+      </button>
+    </div>
+  </form>
+</div>
+
+<!-- Calculations History Card -->
+<div 
+  class="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 bg-white shadow-lg rounded-lg p-6 transition-all duration-300
+         hover:shadow-xl border border-gray-100"
+>
+  <h2 class="text-xl font-bold mb-4 text-gray-800 flex items-center">
+    <svg class="w-5 h-5 mr-2 text-green-700" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+      <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5H7a2 2 0 00-2 2v12a2 2 0 002 2h10a2 2 0 002-2V7a2 2 0 00-2-2h-2M9 5a2 2 0 002 2h2a2 2 0 002-2M9 5a2 2 0 012-2h2a2 2 0 012 2"></path>
+    </svg>
+    Calculation History
+  </h2>
+  <div class="overflow-x-auto rounded-lg border border-gray-200">
+    <table class="min-w-full table-auto">
+      <thead class="bg-gray-50">
+        <tr>
+          <th 
+            class="px-6 py-3 text-left text-xs font-semibold 
+                   text-gray-700 uppercase tracking-wider"
+          >
+            Type
+          </th>
+          <th 
+            class="px-6 py-3 text-left text-xs font-semibold 
+                   text-gray-700 uppercase tracking-wider"
+          >
+            Inputs
+          </th>
+          <th 
+            class="px-6 py-3 text-left text-xs font-semibold 
+                   text-gray-700 uppercase tracking-wider"
+          >
+            Result
+          </th>
+          <th 
+            class="px-6 py-3 text-left text-xs font-semibold 
+                   text-gray-700 uppercase tracking-wider"
+          >
+            Date
+          </th>
+          <th 
+            class="px-6 py-3 text-left text-xs font-semibold 
+                   text-gray-700 uppercase tracking-wider"
+          >
+            Actions
+          </th>
+        </tr>
+      </thead>
+      <tbody 
+        id="calculationsTable" 
+        class="bg-white divide-y divide-gray-200"
+      >
+        <!-- Loading state placeholder -->
+        <tr id="loadingRow">
+          <td colspan="5" class="px-6 py-10 text-center text-gray-500">
+            <div class="flex justify-center items-center">
+              <svg class="animate-spin h-5 w-5 mr-3 text-green-700" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24">
+                <circle class="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" stroke-width="4"></circle>
+                <path class="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"></path>
+              </svg>
+              Loading calculations...
+            </div>
+          </td>
+        </tr>
+        <!-- Dynamically injected rows via JS -->
+      </tbody>
+    </table>
+  </div>
+</div>
+
+<!-- View Modal -->
+<div id="viewModal" class="hidden fixed inset-0 bg-gray-600 bg-opacity-50 overflow-y-auto h-full w-full flex items-center justify-center z-50">
+  <div class="relative p-8 bg-white w-full max-w-md mx-auto rounded-lg shadow-xl animate-fade-in-up">
+    <h3 class="text-2xl font-bold mb-4 text-gray-800 border-b pb-2 flex items-center">
+      <svg class="w-6 h-6 mr-2 text-green-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 12a3 3 0 11-6 0 3 3 0 016 0z"></path>
+        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M2.458 12C3.732 7.943 7.523 5 12 5c4.478 0 8.268 2.943 9.542 7-1.274 4.057-5.064 7-9.542 7-4.477 0-8.268-2.943-9.542-7z"></path>
+      </svg>
+      Calculation Details
+    </h3>
+    <div class="space-y-4 text-gray-700">
+      <div>
+        <p class="font-semibold text-sm text-gray-500">ID:</p>
+        <p id="viewCalcId" class="break-all"></p>
+      </div>
+      <div>
+        <p class="font-semibold text-sm text-gray-500">Operation Type:</p>
+        <p id="viewCalcType" class="capitalize"></p>
+      </div>
+      <div>
+        <p class="font-semibold text-sm text-gray-500">Inputs:</p>
+        <p id="viewCalcInputs"></p>
+      </div>
+      <div>
+        <p class="font-semibold text-sm text-gray-500">Result:</p>
+        <p id="viewCalcResult" class="font-bold text-lg text-green-700"></p>
+      </div>
+      <div>
+        <p class="font-semibold text-sm text-gray-500">Created At:</p>
+        <p id="viewCalcCreatedAt"></p>
+      </div>
+      <div>
+        <p class="font-semibold text-sm text-gray-500">Last Updated:</p>
+        <p id="viewCalcUpdatedAt"></p>
+      </div>
+    </div>
+    <div class="mt-6 flex justify-end">
+      <button id="closeViewModal" class="bg-gray-300 text-gray-800 px-6 py-2 rounded-md hover:bg-gray-400 transition-colors duration-200">Close</button>
+    </div>
+  </div>
+</div>
+
+<!-- Edit Modal -->
+<div id="editModal" class="hidden fixed inset-0 bg-gray-600 bg-opacity-50 overflow-y-auto h-full w-full flex items-center justify-center z-50">
+  <div class="relative p-8 bg-white w-full max-w-md mx-auto rounded-lg shadow-xl animate-fade-in-up">
+    <h3 class="text-2xl font-bold mb-4 text-gray-800 border-b pb-2 flex items-center">
+      <svg class="w-6 h-6 mr-2 text-green-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M11 5H6a2 2 0 00-2 2v11a2 2 0 002 2h11a2 2 0 002-2v-5m-1.414-9.414a2 2 0 112.828 2.828L11.828 15H9v-2.828l8.586-8.586z"></path>
+      </svg>
+      Edit Calculation
+    </h3>
+    <form id="editCalculationForm" class="space-y-5">
+      <input type="hidden" id="editCalcId">
+      <div>
+        <label for="editCalcType" class="block text-sm font-medium text-gray-700 mb-1">Operation Type</label>
+        <select 
+          id="editCalcType" 
+          name="type" 
+          class="block w-full rounded-md border-gray-300 shadow-sm 
+                 focus:border-green-500 focus:ring-green-500 py-2" 
+          disabled >
+          <option value="addition">Addition</option>
+          <option value="subtraction">Subtraction</option>
+          <option value="multiplication">Multiplication</option>
+          <option value="division">Division</option>
+          <option value="modulo">Modulo</option>
+        </select>
+      </div>
+      <div>
+        <label for="editCalcInputs" class="block text-sm font-medium text-gray-700 mb-1">
+          Numbers (comma-separated)
+        </label>
+        <input 
+          type="text" 
+          id="editCalcInputs" 
+          name="inputs" 
+          placeholder="e.g. 5, 10, 15"
+          class="block w-full rounded-md border-gray-300 shadow-sm 
+                 focus:border-green-500 focus:ring-green-500 py-2" 
+        />
+      </div>
+      <div class="flex justify-end space-x-3">
+        <button type="button" id="cancelEditModal" class="bg-gray-300 text-gray-800 px-6 py-2 rounded-md hover:bg-gray-400 transition-colors duration-200">Cancel</button>
         <button 
           type="submit" 
           class="bg-green-700 text-white px-6 py-2 
                  rounded-md hover:bg-green-800 transition-colors duration-200
                  focus:outline-none focus:ring-2 focus:ring-offset-2 
-                 focus:ring-green-500 font-medium flex items-center"
+                 focus:ring-green-500 font-medium flex items-center" 
         >
           <svg class="w-4 h-4 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 7h6m0 10v-3m-3 3h.01M9 17h.01M9 14h.01M12 14h.01M15 11h.01M12 11h.01M9 11h.01M7 21h10a2 2 0 002-2V5a2 2 0 00-2-2H7a2 2 0 00-2 2v14a2 2 0 002 2z"></path>
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 7H5a2 2 0 00-2 2v8m18-4v4a2 2 0 01-2 2H11m-1-4l-3 3m0 0l-3-3m3 3V4"></path>
           </svg>
-          Calculate
+          Update
         </button>
       </div>
     </form>
   </div>
+</div>
 
-  <!-- Calculations History Card -->
-  <div 
-    class="bg-white shadow-lg rounded-lg p-6 transition-all duration-300
-           hover:shadow-xl border border-gray-100"
-  >
-    <h2 class="text-xl font-bold mb-4 text-gray-800 flex items-center">
-      <svg class="w-5 h-5 mr-2 text-green-700" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5H7a2 2 0 00-2 2v12a2 2 0 002 2h10a2 2 0 002-2V7a2 2 0 00-2-2h-2M9 5a2 2 0 002 2h2a2 2 0 002-2M9 5a2 2 0 012-2h2a2 2 0 012 2"></path>
-      </svg>
-      Calculation History
-    </h2>
-    <div class="overflow-x-auto rounded-lg border border-gray-200">
-      <table class="min-w-full table-auto">
-        <thead class="bg-gray-50">
-          <tr>
-            <th 
-              class="px-6 py-3 text-left text-xs font-semibold 
-                     text-gray-700 uppercase tracking-wider"
-            >
-              Type
-            </th>
-            <th 
-              class="px-6 py-3 text-left text-xs font-semibold 
-                     text-gray-700 uppercase tracking-wider"
-            >
-              Inputs
-            </th>
-            <th 
-              class="px-6 py-3 text-left text-xs font-semibold 
-                     text-gray-700 uppercase tracking-wider"
-            >
-              Result
-            </th>
-            <th 
-              class="px-6 py-3 text-left text-xs font-semibold 
-                     text-gray-700 uppercase tracking-wider"
-            >
-              Date
-            </th>
-            <th 
-              class="px-6 py-3 text-left text-xs font-semibold 
-                     text-gray-700 uppercase tracking-wider"
-            >
-              Actions
-            </th>
-          </tr>
-        </thead>
-        <tbody 
-          id="calculationsTable" 
-          class="bg-white divide-y divide-gray-200"
-        >
-          <!-- Loading state placeholder -->
-          <tr id="loadingRow">
-            <td colspan="5" class="px-6 py-10 text-center text-gray-500">
-              <div class="flex justify-center items-center">
-                <svg class="animate-spin h-5 w-5 mr-3 text-green-700" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24">
-                  <circle class="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" stroke-width="4"></circle>
-                  <path class="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"></path>
-                </svg>
-                Loading calculations...
-              </div>
-            </td>
-          </tr>
-          <!-- Dynamically injected rows via JS -->
-        </tbody>
-      </table>
+<!-- Custom Confirmation Modal -->
+<div id="confirmationModal" class="hidden fixed inset-0 bg-gray-600 bg-opacity-50 overflow-y-auto h-full w-full flex items-center justify-center z-50">
+  <div class="relative p-8 bg-white w-full max-w-sm mx-auto rounded-lg shadow-xl animate-fade-in-up">
+    <h3 class="text-xl font-bold mb-4 text-gray-800 border-b pb-2">Confirm Action</h3>
+    <p id="confirmationMessage" class="mb-6 text-gray-700"></p>
+    <div class="flex justify-end space-x-3">
+      <button id="cancelConfirm" class="bg-gray-300 text-gray-800 px-4 py-2 rounded-md hover:bg-gray-400 transition-colors duration-200">Cancel</button>
+      <button id="confirmAction" class="bg-red-600 text-white px-4 py-2 rounded-md hover:bg-red-700 transition-colors duration-200">Confirm</button>
     </div>
   </div>
+</div>
 
-  <div id="viewModal" class="hidden fixed inset-0 bg-gray-600 bg-opacity-50 overflow-y-auto h-full w-full flex items-center justify-center z-50">
-    <div class="relative p-8 bg-white w-full max-w-md mx-auto rounded-lg shadow-xl animate-fade-in-up">
-      <h3 class="text-2xl font-bold mb-4 text-gray-800 border-b pb-2 flex items-center">
-        <svg class="w-6 h-6 mr-2 text-green-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 12a3 3 0 11-6 0 3 3 0 016 0z"></path>
-          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M2.458 12C3.732 7.943 7.523 5 12 5c4.478 0 8.268 2.943 9.542 7-1.274 4.057-5.064 7-9.542 7-4.477 0-8.268-2.943-9.542-7z"></path>
-        </svg>
-        Calculation Details
-      </h3>
-      <div class="space-y-4 text-gray-700">
-        <div>
-          <p class="font-semibold text-sm text-gray-500">ID:</p>
-          <p id="viewCalcId" class="break-all"></p>
-        </div>
-        <div>
-          <p class="font-semibold text-sm text-gray-500">Operation Type:</p>
-          <p id="viewCalcType" class="capitalize"></p>
-        </div>
-        <div>
-          <p class="font-semibold text-sm text-gray-500">Inputs:</p>
-          <p id="viewCalcInputs"></p>
-        </div>
-        <div>
-          <p class="font-semibold text-sm text-gray-500">Result:</p>
-          <p id="viewCalcResult" class="font-bold text-lg text-green-700"></p>
-        </div>
-        <div>
-          <p class="font-semibold text-sm text-gray-500">Created At:</p>
-          <p id="viewCalcCreatedAt"></p>
-        </div>
-        <div>
-          <p class="font-semibold text-sm text-gray-500">Last Updated:</p>
-          <p id="viewCalcUpdatedAt"></p>
-        </div>
-      </div>
-      <div class="mt-6 flex justify-end">
-        <button id="closeViewModal" class="bg-gray-300 text-gray-800 px-6 py-2 rounded-md hover:bg-gray-400 transition-colors duration-200">Close</button>
-      </div>
-    </div>
-  </div>
-
-  <div id="editModal" class="hidden fixed inset-0 bg-gray-600 bg-opacity-50 overflow-y-auto h-full w-full flex items-center justify-center z-50">
-    <div class="relative p-8 bg-white w-full max-w-md mx-auto rounded-lg shadow-xl animate-fade-in-up">
-      <h3 class="text-2xl font-bold mb-4 text-gray-800 border-b pb-2 flex items-center">
-        <svg class="w-6 h-6 mr-2 text-green-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M11 5H6a2 2 0 00-2 2v11a2 2 0 002 2h11a2 2 0 002-2v-5m-1.414-9.414a2 2 0 112.828 2.828L11.828 15H9v-2.828l8.586-8.586z"></path>
-        </svg>
-        Edit Calculation
-      </h3>
-      <form id="editCalculationForm" class="space-y-5">
-        <input type="hidden" id="editCalcId">
-        <div>
-          <label for="editCalcType" class="block text-sm font-medium text-gray-700 mb-1">Operation Type</label>
-          <select 
-            id="editCalcType" 
-            name="type" 
-            class="block w-full rounded-md border-gray-300 shadow-sm 
-                   focus:border-green-500 focus:ring-green-500 py-2" 
-            disabled >
-            <option value="addition">Addition</option>
-            <option value="subtraction">Subtraction</option>
-            <option value="multiplication">Multiplication</option>
-            <option value="division">Division</option>
-            <option value="modulo">Modulo</option>
-          </select>
-        </div>
-        <div>
-          <label for="editCalcInputs" class="block text-sm font-medium text-gray-700 mb-1">
-            Numbers (comma-separated)
-          </label>
-          <input 
-            type="text" 
-            id="editCalcInputs" 
-            name="inputs" 
-            placeholder="e.g. 5, 10, 15"
-            class="block w-full rounded-md border-gray-300 shadow-sm 
-                   focus:border-green-500 focus:ring-green-500 py-2" 
-          />
-        </div>
-        <div class="flex justify-end space-x-3">
-          <button type="button" id="cancelEditModal" class="bg-gray-300 text-gray-800 px-6 py-2 rounded-md hover:bg-gray-400 transition-colors duration-200">Cancel</button>
-          <button 
-            type="submit" 
-            class="bg-green-700 text-white px-6 py-2 
-                   rounded-md hover:bg-green-800 transition-colors duration-200
-                   focus:outline-none focus:ring-2 focus:ring-offset-2 
-                   focus:ring-green-500 font-medium flex items-center" 
-          >
-            <svg class="w-4 h-4 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 7H5a2 2 0 00-2 2v8m18-4v4a2 2 0 01-2 2H11m-1-4l-3 3m0 0l-3-3m3 3V4"></path>
-            </svg>
-            Update
-          </button>
-        </div>
-      </form>
-    </div>
-  </div>
-
-  <!-- Custom Confirmation Modal -->
-  <div id="confirmationModal" class="hidden fixed inset-0 bg-gray-600 bg-opacity-50 overflow-y-auto h-full w-full flex items-center justify-center z-50">
-    <div class="relative p-8 bg-white w-full max-w-sm mx-auto rounded-lg shadow-xl animate-fade-in-up">
-      <h3 class="text-xl font-bold mb-4 text-gray-800 border-b pb-2">Confirm Action</h3>
-      <p id="confirmationMessage" class="mb-6 text-gray-700"></p>
-      <div class="flex justify-end space-x-3">
-        <button id="cancelConfirm" class="bg-gray-300 text-gray-800 px-4 py-2 rounded-md hover:bg-gray-400 transition-colors duration-200">Cancel</button>
-        <button id="confirmAction" class="bg-red-600 text-white px-4 py-2 rounded-md hover:bg-red-700 transition-colors duration-200">Confirm</button>
-      </div>
-    </div>
-  </div>
-
-</div> {# End of new wrapper div #}
 {% endblock %}
-
 
 {% block scripts %}
 <script>
@@ -326,7 +325,6 @@ document.addEventListener('DOMContentLoaded', function() {
   });
   // --- End Custom Confirmation Modal Logic ---
 
-
   const layoutLogoutBtn = document.getElementById('layoutLogoutBtn');
   if (layoutLogoutBtn) {
     layoutLogoutBtn.addEventListener('click', () => {
@@ -360,7 +358,6 @@ document.addEventListener('DOMContentLoaded', function() {
   function showSuccess(msg) {
     const successAlert = document.getElementById('successAlert');
     const successMessage = document.getElementById('successMessage');
-    successMessage.textContent = msg;
     successAlert.classList.remove('hidden');
     successAlert.classList.remove('opacity-0'); // Ensure it's not transparent
 
@@ -503,7 +500,7 @@ document.addEventListener('DOMContentLoaded', function() {
     }
   }
 
-  // Load the calculations from the API
+  // Load the calculations from the API and attach event listeners
   async function loadCalculations() {
     try {
       const tableBody = document.getElementById('calculationsTable');
@@ -526,7 +523,7 @@ document.addEventListener('DOMContentLoaded', function() {
       }
 
       const calculations = await response.json();
-      tableBody.innerHTML = '';
+      tableBody.innerHTML = ''; // Clear loading row or previous data
 
       if (calculations.length === 0) {
         const noDataRow = document.createElement('tr');
@@ -542,257 +539,256 @@ document.addEventListener('DOMContentLoaded', function() {
           </td>
         `;
         tableBody.appendChild(noDataRow);
-        return;
-      }
+      } else {
+        calculations.forEach(calc => {
+          const row = document.createElement('tr');
+          row.classList.add('hover:bg-gray-50', 'transition-colors');
 
-      calculations.forEach(calc => {
-        const row = document.createElement('tr');
-        row.classList.add('hover:bg-gray-50', 'transition-colors');
-        
-        // Format the date nicely
-        const calcDate = new Date(calc.created_at);
-        const dateOptions = { year: 'numeric', month: 'short', day: 'numeric' };
-        const formattedDate = calcDate.toLocaleDateString(undefined, dateOptions);
-        const formattedTime = calcDate.toLocaleTimeString(undefined, { hour: '2-digit', minute: '2-digit' });
-        
-        row.innerHTML = `
-          <td class="px-6 py-4 text-gray-800 whitespace-nowrap">
-            <span class="font-medium capitalize">${calc.type}</span>
-          </td>
-          <td class="px-6 py-4 text-gray-800 whitespace-nowrap">
-            ${calc.inputs.join(', ')}
-          </td>
-          <td class="px-6 py-4 text-gray-800 whitespace-nowrap font-semibold">
-            ${calc.result}
-          </td>
-          <td class="px-6 py-4 text-gray-800 whitespace-nowrap">
-            <div class="text-sm">
-              <div>${formattedDate}</div>
-              <div class="text-gray-500">${formattedTime}</div>
-            </div>
-          </td>
-          <td class="px-6 py-4">
-            <div class="flex space-x-3">
-              <button 
-                class="text-green-700 hover:text-green-800 font-medium view-calc flex items-center" 
-                data-id="${calc.id}" 
-              >
-                <svg class="w-4 h-4 mr-1" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 12a3 3 0 11-6 0 3 3 0 016 0z"></path>
-                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M2.458 12C3.732 7.943 7.523 5 12 5c4.478 0 8.268 2.943 9.542 7-1.274 4.057-5.064 7-9.542 7-4.477 0-8.268-2.943-9.542-7z"></path>
-                </svg>
-                View
-              </button>
-              <button 
-                class="text-gray-700 hover:text-gray-800 font-medium edit-calc flex items-center"
-                data-id="${calc.id}"
-              >
-                <svg class="w-4 h-4 mr-1" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M11 5H6a2 2 0 00-2 2v11a2 2 0 002 2h11a2 2 0 002-2v-5m-1.414-9.414a2 2 0 112.828 2.828L11.828 15H9v-2.828l8.586-8.586z"></path>
-                </svg>
-                Edit
-              </button>
-              <button 
-                class="text-red-600 hover:text-red-800 font-medium delete-calc flex items-center"
-                data-id="${calc.id}"
-              >
-                <svg class="w-4 h-4 mr-1" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 7l-.867 12.142A2 2 0 0116.138 21H7.862a2 2 0 01-1.995-1.858L5 7m5 4v6m4-6v6m1-10V4a1 1 0 00-1-1h-4a1 1 0 00-1 1v3M4 7h16"></path>
-                </svg>
-                Delete
-              </button>
-            </div>
-          </td>
-        </tr>
-      `);
-      });
+          // Format the date nicely
+          const calcDate = new Date(calc.created_at);
+          const dateOptions = { year: 'numeric', month: 'short', day: 'numeric' };
+          const formattedDate = calcDate.toLocaleDateString(undefined, dateOptions);
+          const formattedTime = calcDate.toLocaleTimeString(undefined, { hour: '2-digit', minute: '2-digit' });
 
-      // --- Attach event handlers for View, Edit, Delete ---
-      document.querySelectorAll('.view-calc').forEach(btn => {
-        btn.addEventListener('click', async (e) => {
-          const calcId = e.currentTarget.dataset.id;
-          await fetchCalculationDetails(calcId);
-        });
+          row.innerHTML = `
+            <td class="px-6 py-4 text-gray-800 whitespace-nowrap">
+              <span class="font-medium capitalize">${calc.type}</span>
+            </td>
+            <td class="px-6 py-4 text-gray-800 whitespace-nowrap">
+              ${calc.inputs.join(', ')}
+            </td>
+            <td class="px-6 py-4 text-gray-800 whitespace-nowrap font-semibold">
+              ${calc.result}
+            </td>
+            <td class="px-6 py-4 text-gray-800 whitespace-nowrap">
+              <div class="text-sm">
+                <div>${formattedDate}</div>
+                <div class="text-gray-500">${formattedTime}</div>
+              </div>
+            </td>
+            <td class="px-6 py-4">
+              <div class="flex space-x-3">
+                <button
+                  class="text-green-700 hover:text-green-800 font-medium view-calc flex items-center"
+                  data-id="${calc.id}"
+                >
+                  <svg class="w-4 h-4 mr-1" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 12a3 3 0 11-6 0 3 3 0 016 0z"></path>
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M2.458 12C3.732 7.943 7.523 5 12 5c4.478 0 8.268 2.943 9.542 7-1.274 4.057-5.064 7-9.542 7-4.477 0-8.268-2.943-9.542-7z"></path>
+                  </svg>
+                  View
+                </button>
+                <button
+                  class="text-gray-700 hover:text-gray-800 font-medium edit-calc flex items-center"
+                  data-id="${calc.id}"
+                >
+                  <svg class="w-4 h-4 mr-1" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M11 5H6a2 2 0 00-2 2v11a2 2 0 002 2h11a2 2 0 002-2v-5m-1.414-9.414a2 2 0 112.828 2.828L11.828 15H9v-2.828l8.586-8.586z"></path>
+                  </svg>
+                  Edit
+                </button>
+                <button
+                  class="text-red-600 hover:text-red-800 font-medium delete-calc flex items-center"
+                  data-id="${calc.id}"
+                >
+                  <svg class="w-4 h-4 mr-1" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 7l-.867 12.142A2 2 0 0116.138 21H7.862a2 2 0 01-1.995-1.858L5 7m5 4v6m4-6v6m1-10V4a1 1 0 00-1-1h-4a1 1 0 00-1 1v3M4 7h16"></path>
+                  </svg>
+                  Delete
+                </button>
+              </div>
+            </td>
+          </tr>
+        `;
+        tableBody.appendChild(row);
       });
-
-      document.querySelectorAll('.edit-calc').forEach(btn => {
-        btn.addEventListener('click', async (e) => {
-          const calcId = e.currentTarget.dataset.id;
-          await populateEditModal(calcId);
-        });
-      });
-
-      document.querySelectorAll('.delete-calc').forEach(btn => {
-        btn.addEventListener('click', async (e) => {
-          const calcId = e.currentTarget.dataset.id;
-          showConfirmation('Are you sure you want to delete this calculation?', async (confirmed) => {
-            if (confirmed) {
-              // Show loading spinner in the button
-              const originalContent = e.currentTarget.innerHTML;
-              e.currentTarget.innerHTML = '<svg class="animate-spin h-4 w-4 mr-1" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24"><circle class="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" stroke-width="4"></circle><path class="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"></path></svg> Deleting...';
-              e.currentTarget.disabled = true;
-              
-              try {
-                const delResp = await fetch(`/calculations/${calcId}`, {
-                  method: 'DELETE',
-                  headers: { 'Authorization': `Bearer ${token}` }
-                });
-                
-                if (!delResp.ok) {
-                  if (delResp.status === 401) {
-                    localStorage.clear();
-                    window.location.href = '/login';
-                    return;
-                  }
-                  const errorData = await delResp.json();
-                  throw new Error(errorData.detail || 'Failed to delete calculation');
-                }
-                
-                showSuccess('Calculation deleted successfully!');
-                loadCalculations(); 
-                
-              } catch (err) {
-                e.currentTarget.innerHTML = originalContent;
-                e.currentTarget.disabled = false;
-                
-                showError(err.message || 'Error deleting calculation');
-              }
-            }
-          });
-        });
-      });
-    } catch (err) {
-      showError(err.message || 'Error loading calculations');
-      
-      const tableBody = document.getElementById('calculationsTable');
-      tableBody.innerHTML = `
-        <tr>
-          <td colspan="5" class="px-6 py-10 text-center">
-            <div class="flex flex-col items-center justify-center text-red-600">
-              <svg class="w-12 h-12 mb-3" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8v4m0 4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"></path>
-              </svg>
-              <p class="text-lg font-medium">Failed to load calculations</p>
-              <button id="retryButton" class="mt-3 bg-green-700 text-white px-4 py-2 rounded">
-                Retry
-              </button>
-            </div>
-          </td>
-        </tr>
-      `;
-      
-      document.getElementById('retryButton')?.addEventListener('click', loadCalculations);
     }
+
+    // --- Attach event handlers for View, Edit, Delete (after table is populated) ---
+    document.querySelectorAll('.view-calc').forEach(btn => {
+      btn.addEventListener('click', async (e) => {
+        const calcId = e.currentTarget.dataset.id;
+        await fetchCalculationDetails(calcId);
+      });
+    });
+
+    document.querySelectorAll('.edit-calc').forEach(btn => {
+      btn.addEventListener('click', async (e) => {
+        const calcId = e.currentTarget.dataset.id;
+        await populateEditModal(calcId);
+      });
+    });
+
+    document.querySelectorAll('.delete-calc').forEach(btn => {
+      btn.addEventListener('click', async (e) => {
+        if (!confirm('Are you sure you want to delete this calculation?')) return;
+        const calcId = e.currentTarget.dataset.id;
+        
+        // Show loading spinner in the button
+        const originalContent = e.currentTarget.innerHTML;
+        e.currentTarget.innerHTML = '<svg class="animate-spin h-4 w-4 mr-1" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24"><circle class="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" stroke-width="4"></circle><path class="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"></path></svg> Deleting...';
+        e.currentTarget.disabled = true;
+        
+        try {
+          const delResp = await fetch(`/calculations/${calcId}`, {
+            method: 'DELETE',
+            headers: { 'Authorization': `Bearer ${token}` }
+          });
+          
+          if (!delResp.ok) {
+            if (delResp.status === 401) {
+              localStorage.clear();
+              window.location.href = '/login';
+              return;
+            }
+            const errorData = await delResp.json();
+            throw new Error(errorData.detail || 'Failed to delete calculation');
+          }
+          
+          showSuccess('Calculation deleted successfully!');
+          loadCalculations(); 
+          
+        } catch (err) {
+          e.currentTarget.innerHTML = originalContent;
+          e.currentTarget.disabled = false;
+          
+          showError(err.message || 'Error deleting calculation');
+        }
+      });
+    });
+  } catch (err) {
+    showError(err.message || 'Error loading calculations');
+    
+    const tableBody = document.getElementById('calculationsTable');
+    tableBody.innerHTML = `
+      <tr>
+        <td colspan="5" class="px-6 py-10 text-center">
+          <div class="flex flex-col items-center justify-center text-red-600">
+            <svg class="w-12 h-12 mb-3" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8v4m0 4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"></path>
+            </svg>
+            <p class="text-lg font-medium">Failed to load calculations</p>
+            <button id="retryButton" class="mt-3 bg-green-700 text-white px-4 py-2 rounded">
+              Retry
+            </button>
+          </div>
+        </td>
+      </tr>
+    `;
+    
+    document.getElementById('retryButton')?.addEventListener('click', loadCalculations);
+  }
+}
+  
+// --- Handle New Calculation Form Submission ---
+document.getElementById('calculationForm').addEventListener('submit', async (e) => {
+  e.preventDefault();
+  
+  const form = e.target;
+  const submitButton = form.querySelector('button[type="submit"]');
+  const originalButtonContent = submitButton.innerHTML;
+  
+  const inputsVal = document.getElementById('calcInputs').value;
+  const inputs = inputsVal.split(',')
+    .map(num => parseFloat(num.trim()))
+    .filter(num => !isNaN(num));
+
+  if (inputs.length < 2) {
+    showError('Please enter at least two valid numbers, separated by commas');
+    
+    const inputField = document.getElementById('calcInputs');
+    inputField.classList.add('border-red-500');
+    inputField.focus();
+    
+    setTimeout(() => inputField.classList.remove('border-red-500'), 3000);
+    inputField.addEventListener('input', () => inputField.classList.remove('border-red-500'), { once: true });
+    
+    return;
   }
 
-  // --- Handle New Calculation Form Submission ---
-  document.getElementById('calculationForm').addEventListener('submit', async (e) => {
-    e.preventDefault();
-    
-    const form = e.target;
-    const submitButton = form.querySelector('button[type="submit"]');
-    const originalButtonContent = submitButton.innerHTML;
-    
-    const inputsVal = document.getElementById('calcInputs').value;
-    const inputs = inputsVal.split(',')
-      .map(num => parseFloat(num.trim()))
-      .filter(num => !isNaN(num));
+  const newCalc = {
+    type: document.getElementById('calcType').value,
+    inputs
+  };
 
-    if (inputs.length < 2) {
-      showError('Please enter at least two valid numbers, separated by commas');
+  submitButton.disabled = true;
+  submitButton.innerHTML = '<svg class="animate-spin -ml-1 mr-2 h-4 w-4 text-white" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24"><circle class="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" stroke-width="4"></circle><path class="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"></path></svg> Calculating...';
+
+  try {
+    const response = await fetch('/calculations', {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+        'Authorization': `Bearer ${token}`
+      },
+      body: JSON.stringify(newCalc)
+    });
+    
+    if (!response.ok) {
+      if (response.status === 401) {
+        localStorage.clear();
+        window.location.href = '/login';
+        return;
+      }
       
-      const inputField = document.getElementById('calcInputs');
-      inputField.classList.add('border-red-500');
-      inputField.focus();
-      
-      setTimeout(() => inputField.classList.remove('border-red-500'), 3000);
-      inputField.addEventListener('input', () => inputField.classList.remove('border-red-500'), { once: true });
-      
-      return;
+      const errorData = await response.json();
+      throw new Error(errorData.detail || 'Failed to create calculation');
     }
+    
+    const result = await response.json();
+    
+    showSuccess(`Calculation complete: ${result.result}`);
+    form.reset();
+    loadCalculations(); 
+    
+    setTimeout(() => {
+      const tableBody = document.getElementById('calculationsTable');
+      if (tableBody.firstChild) {
+        tableBody.firstChild.classList.add('bg-green-50');
+        setTimeout(() => {
+          tableBody.firstChild.classList.remove('bg-green-50');
+        }, 2000);
+      }
+    }, 500);
+    
+  } catch (error) {
+    showError(error.message || 'Error creating calculation');
+  } finally {
+    submitButton.disabled = false;
+    submitButton.innerHTML = originalButtonContent;
+  }
+});
 
-    const newCalc = {
-      type: document.getElementById('calcType').value,
-      inputs
-    };
+// Initial load
+loadCalculations();
 
-    submitButton.disabled = true;
-    submitButton.innerHTML = '<svg class="animate-spin -ml-1 mr-2 h-4 w-4 text-white" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24"><circle class="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" stroke-width="4"></circle><path class="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"></path></svg> Calculating...';
+// Optional features:
 
-    try {
-      const response = await fetch('/calculations', {
-        method: 'POST',
-        headers: {
-          'Content-Type': 'application/json',
-          'Authorization': `Bearer ${token}`
-        },
-        body: JSON.stringify(newCalc)
+// 1. Auto-refresh every 30 seconds
+// const refreshInterval = setInterval(loadCalculations, 30000);
+
+// 2. Add clear form button
+const calcInputs = document.getElementById('calcInputs');
+calcInputs.addEventListener('input', function() {
+  if (this.value.trim() !== '') {
+    if (!this.nextElementSibling || !this.nextElementSibling.classList.contains('clear-button')) {
+      const clearButton = document.createElement('button');
+      clearButton.type = 'button';
+      clearButton.className = 'clear-button absolute right-2 top-1/2 -translate-y-1/2 text-gray-400 hover:text-gray-600';
+      clearButton.innerHTML = '×';
+      clearButton.addEventListener('click', () => {
+        this.value = '';
+        this.focus();
+        clearButton.remove();
       });
       
-      if (!response.ok) {
-        if (response.status === 401) {
-          localStorage.clear();
-          window.location.href = '/login';
-          return;
-        }
-        
-        const errorData = await response.json();
-        throw new Error(errorData.detail || 'Failed to create calculation');
-      }
-      
-      const result = await response.json();
-      
-      showSuccess(`Calculation complete: ${result.result}`);
-      form.reset();
-      loadCalculations(); 
-      
-      setTimeout(() => {
-        const tableBody = document.getElementById('calculationsTable');
-        if (tableBody.firstChild) {
-          tableBody.firstChild.classList.add('bg-green-50');
-          setTimeout(() => {
-            tableBody.firstChild.classList.remove('bg-green-50');
-          }, 2000);
-        }
-      }, 500);
-      
-    } catch (error) {
-      showError(error.message || 'Error creating calculation');
-    } finally {
-      submitButton.disabled = false;
-      submitButton.innerHTML = originalButtonContent;
+      this.parentElement.style.position = 'relative';
+      this.parentElement.appendChild(clearButton);
     }
-  });
-
-  // Initial load
-  loadCalculations();
-  
-  // Optional features:
-  
-  // 1. Auto-refresh every 30 seconds
-  // const refreshInterval = setInterval(loadCalculations, 30000);
-  
-  // 2. Add clear form button
-  const calcInputs = document.getElementById('calcInputs');
-  calcInputs.addEventListener('input', function() {
-    if (this.value.trim() !== '') {
-      if (!this.nextElementSibling || !this.nextElementSibling.classList.contains('clear-button')) {
-        const clearButton = document.createElement('button');
-        clearButton.type = 'button';
-        clearButton.className = 'clear-button absolute right-2 top-1/2 -translate-y-1/2 text-gray-400 hover:text-gray-600';
-        clearButton.innerHTML = '×';
-        clearButton.addEventListener('click', () => {
-          this.value = '';
-          this.focus();
-          clearButton.remove();
-        });
-        
-        this.parentElement.style.position = 'relative';
-        this.parentElement.appendChild(clearButton);
-      }
-    } else if (this.nextElementSibling && this.nextElementSibling.classList.contains('clear-button')) {
-      this.nextElementSibling.remove();
-    }
-  });
+  } else if (this.nextElementSibling && this.nextElementSibling.classList.contains('clear-button')) {
+    this.nextElementSibling.remove();
+  }
+});
+});
 </script>
 {% endblock %}
